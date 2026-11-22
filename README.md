@@ -1,3 +1,5 @@
+[![Python CI](https://github.com/elliottkennedy52-ux/http-header-auditor/actions/workflows/python-ci.yml/badge.svg)](https://github.com/elliottkennedy52-ux/http-header-auditor/actions/workflows/python-ci.yml)
+
 # HTTP Security Header & Server Banner Posture Auditor
 
 A zero-dependency Python CLI tool that audits web applications for missing HTTP security headers, server/framework version banner leakage, and TLS posture—providing a weighted security score (`0–100`) and actionable remediation steps.
