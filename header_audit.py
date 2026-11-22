@@ -63,15 +63,17 @@ def check_tls(hostname: str, port: int = 443) -> dict | None:
     """Retrieve TLS protocol version and certificate expiration for HTTPS targets."""
     ctx = ssl.create_default_context()
     try:
-        with socket.create_connection((hostname, port), timeout=5) as sock:
-            with ctx.wrap_socket(sock, server_hostname=hostname) as ssock:
-                cert = ssock.getpeercert()
-                return {
-                    "tls_version": ssock.version(),
-                    "cipher": ssock.cipher()[0],
-                    "expires": cert.get("notAfter", "Unknown"),
-                }
-    except Exception:
+        with (
+            socket.create_connection((hostname, port), timeout=5) as sock,
+            ctx.wrap_socket(sock, server_hostname=hostname) as ssock,
+        ):
+            cert = ssock.getpeercert()
+            return {
+                "tls_version": ssock.version(),
+                "cipher": ssock.cipher(),
+                "expires": cert.get("notAfter", "Unknown"),
+            }
+    except (OSError, ssl.SSLError):
         return None
 
 
