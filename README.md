@@ -12,7 +12,7 @@ A zero-dependency Python CLI tool that audits web applications for missing HTTP 
 
 ### Audit a Local Lab or Web App
 ```bash
-python3 header_audit.py http://127.0.0
+python3 header_audit.py http://localhost:4280/login.php
 ```
 
 ### Export Findings to JSON
